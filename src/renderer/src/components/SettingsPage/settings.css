@@ -1,0 +1,23 @@
+@import "../../../cssRoots.css";
+
+.main{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--blackAccent);
+    gap: 5px;
+}
+.updateSection {
+    padding: 10px;
+    margin: 0;
+    font-size: var(--normalSize);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.selectt{
+    font-size: var(--normalSize);
+    background-color: var(--black);
+    color: var(--white);
+}

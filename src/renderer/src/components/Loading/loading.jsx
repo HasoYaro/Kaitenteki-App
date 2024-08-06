@@ -7,18 +7,15 @@ export default function Loading(){
   const {t} = useTranslation()
 
   async function Load(){
-      let docPath
-      let version
-      await window.Api.documentPath((res) => {docPath = res})
-      await window.Api.isVersionUptoDate((res) => { localStorage.setItem('isUptoDate', res) } )
-      console.log(docPath)
+      await window.Api.isVersionUptoDate(async (res) => { await localStorage.setItem('isUptoDate', res); console.log('LOCAL STORAGE DOLDURULDU; '+res) } )
+      i18next.changeLanguage(await window.Api.getLang())
       setTimeout(async () => {
-        await window.Api.openDb(docPath).then((res) => {
+        await window.Api.openDb().then((res) => {
           if(res)
-          window.Api.loadingStateChanger('Finished')
-        })
+            window.Api.loadingStateChanger('Finished')
+      })
         
-      }, 2000);
+      }, 5000);
     }  
     Load()
     return (<>

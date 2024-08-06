@@ -7,19 +7,21 @@ export default function Layout(){
   const [aaa, setaaa] = useState()
   window.Api.loadingStater((res) => {setaaa(res)})
 
-  console.log(aaa)
   if(aaa === '' || aaa === 'Loading' || aaa === undefined){
     return <Loading />
   }
   else
   {
     return(<>
-
+    <div style={{display: "flex", boxSizing: 'border-box'}}>
+      <header style={{width: "20vw", height: "100vh", backgroundColor: "#212121", color: "#e7e7e7", flex: "1", display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Header />
-      <main>
+      </header>
+      <main style={{flex: "5", backgroundColor: "#e8e8e8", margin: "0", padding: "5px"}}>
         
           <Outlet />
       </main>
+    </div>
 </>)
 
   }

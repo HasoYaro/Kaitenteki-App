@@ -5,7 +5,8 @@ import icon from '../../resources/icon.png?asset'
 import request from 'request'
 import fs from 'fs-extra'
 
-let mainWindow;
+
+let mainWindow
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -66,7 +67,7 @@ app.whenReady().then(() => {
   })
 
 
-  request('https://api.github.com/repos/HasoYaro/vite-deneme/releases/latest', {headers: {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 '}}, function(error, html, body){
+  request('https://api.github.com/repos/HasoYaro/Kaitenteki-App/releases/latest', {headers: {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 '}}, async function(error, html, body){
 		if(!error){
 			var v = app.getVersion().replace(' ', '');
 			var latestV = JSON.parse(body).tag_name.replace('v', '');
@@ -75,10 +76,13 @@ app.whenReady().then(() => {
 				console.log(v)
 				console.log(latestV)
 				console.log(changeLog)
-				mainWindow.webContents.send('isVersionUptoDate', false)
+				mainWindow.webContents.send('isVersionUptoDate', [false, 'notUptoDate', latestV])
 			}
       else{
-        mainWindow.webContents.send('isVersionUptoDate', true)
+        console.log(v)
+				console.log(latestV)
+				console.log(changeLog)
+        mainWindow.webContents.send('isVersionUptoDate', [true, 'uptoDate', latestV])
       }
 		}
 	});
@@ -92,6 +96,10 @@ app.whenReady().then(() => {
     ipcMain.on('loadingStateChanger', (e, s) => {
     mainWindow.webContents.send('loadingState', s);
     })    
+    ipcMain.on('downloadLatestV', (e, s) => {
+        shell.openExternal('https://github.com/HasoYaro/Kaitenteki-App/releases/download/'+s[2]+'/kaitenteki-app.rar')
+    })    
+    
   });
   
     
@@ -110,6 +118,7 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
+  console.log('kakaka')
   if (process.platform !== 'darwin') {
     app.quit()
   }

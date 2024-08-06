@@ -6,27 +6,28 @@ i18next
 .use(initReactI18next)
 .use(Languagedetector)
 .init({
-    debug: true,
     fallbackLng: 'en',
     resources: {
         en: {
             translation: {
                 loading: 'Loading',
-                updateCheck: 'Checking for updates...',
-                updateFound: 'Update found! Will be downloaded after you close the app.',
-                updateNotFound: 'Your app is up to date.',
-                updateDownloaded: 'Update is downloaded.',
-                play: 'Play'
+                play: 'Play',
+                notUptoDate: 'Not up to date. Click to download.',
+                uptoDate: 'Up to date. (y)',
+                settings: 'Settings',
+                decks: 'Decks',
+                cards: 'Cards',
             }
         },
         tr: {
             translation: {
                 loading: 'Yükleniyor',
-                updateCheck: 'Guncellemeler kontrol ediliyor...',
-                updateFound: 'Guncelleme bulundu! Programi kapattiksan sonra indirilecek.',
-                updateNotFound: 'Programiniz guncel.',
-                updateDownloaded: 'Guncelleme indirildi.',
-                play: 'Oyna'
+                play: 'Oyna',
+                notUptoDate: 'Guncel degil. Indirmek icin tikla.',
+                uptoDate: 'Program guncel. (y)',
+                settings: 'Ayarlar',
+                decks: 'Desteler',
+                cards: 'Kartlar',
             }
         }
     }

@@ -26,6 +26,8 @@
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "electron-db": "^0.15.7",
+    "electron-dl": "^4.0.0",
+    "electron-store": "^10.0.0",
     "fs-extra": "^11.2.0",
     "i18next": "^23.12.2",
     "i18next-browser-languagedetector": "^8.0.0",
